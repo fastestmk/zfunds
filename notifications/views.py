@@ -21,9 +21,9 @@ class NotificationAPIView(APIView):
 		email = request.user.email
 		if not email:
 			context["success"] = False
-			context["message"] = "Please enter email"
+			context["message"] = "Email doesn't exist"
 
-			return Response(context, status=400)
+			return Response(context)
 		else:	
 			subject = "Payment from zfunds"
 			message = "You have received 500 rupees"
@@ -31,8 +31,8 @@ class NotificationAPIView(APIView):
 			sender = settings.EMAIL_HOST_USER
 			receivers = [email]
 			try:
-				send_async_email(subject, message, sender, receivers, fail_silently=False)
-				sendSlackMessage()
+				send_async_email(subject, message, sender, receivers, fail_silently=True)
+				sendSlackMessage(message)
 				context["success"] = True
 				context["message"] = "Message sent to mail and slack"
 				return Response(context)
@@ -40,3 +40,4 @@ class NotificationAPIView(APIView):
 				print(str(e))
 				context["success"] = False
 				context["message"] = "Some error occured"
+				return Response(context)	

@@ -24,10 +24,10 @@ def send_async_email(subject, message, sender, receivers, fail_silently=False):
     print(f"{res} emails sent.")
 
 
-def sendSlackMessage():
+def sendSlackMessage(message):
     client = slack.WebClient(token=settings.SLACK_TOKEN)
     print(client, "clientttttttttttttttttt")
-    client.chat_postMessage(channel='general', text='This is only a test.')
+    client.chat_postMessage(channel='general', text=message)
 
     return True
 
