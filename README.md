@@ -40,6 +40,8 @@
 	**
 		python manage.py createsuperuser 
 	**
+	
+- Run the server using **python manage.py runserver**
 
 - To login, put this url http://127.0.0.1:8000/api/token/ into postman with payload 
 	**
@@ -54,7 +56,6 @@
 - Send notification to user with http://127.0.0.1:8000/notifications/send-notification/ (user must be logged in)
 
 
-- Run the server using **python manage.py runserver**
 
 
 
